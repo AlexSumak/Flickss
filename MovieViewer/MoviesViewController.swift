@@ -53,6 +53,7 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     func refreshControlAction(_ refreshControl: UIRefreshControl) {
         
+        
         // ... Create the URLRequest `myRequest` ...
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         // Configure session so that completion handler is executed on main UI thread
