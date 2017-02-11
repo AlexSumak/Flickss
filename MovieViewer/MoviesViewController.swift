@@ -16,6 +16,8 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tableView: UITableView!
     
     var movies: [NSDictionary]?
+    var endpoint:String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,7 +33,7 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         tableView.insertSubview(refreshControl, at: 0)
         
-        let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")!
+        let url = URL(string: "https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
         let task: URLSessionDataTask = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
@@ -101,8 +103,9 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let movie = movies![indexPath.row]
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
+        
         let baseUrl = "http://image.tmdb.org/t/p/w500"
-        let posterPath = movie["poster_path"] as! String
+        if let posterPath = movie["poster_path"] as? String{
         
         let imageUrl = NSURL(string: baseUrl + posterPath)
         cell.titleLabel.text = title
@@ -111,17 +114,27 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.posterView.setImageWith(imageUrl as! URL)
         
         print("row \(indexPath.row)")
+        }
         return cell
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPath(for: cell)
+        let movie = movies?[(indexPath?.row)!]
+        
+        let detailViewController = segue.destination as! DetailViewController
+        
+        detailViewController.movie = movie!
+        
+        print("called")
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }
