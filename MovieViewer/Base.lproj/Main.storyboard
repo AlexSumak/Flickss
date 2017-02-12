@@ -81,7 +81,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="131"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0yH-In-jWZ" id="ABg-gu-eaa">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="131"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="130"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sax-qO-tpp">
@@ -128,7 +128,7 @@
         <!--Navigation Controller-->
         <scene sceneID="xPa-Xk-KDP">
             <objects>
-                <navigationController storyboardIdentifier="MoviesNovigationController" automaticallyAdjustsScrollViewInsets="NO" id="9n6-qZ-O1m" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MoviesNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="9n6-qZ-O1m" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="d77-i2-If9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
