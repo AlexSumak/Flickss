@@ -33,7 +33,7 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         tableView.insertSubview(refreshControl, at: 0)
         
-        let url = URL(string: "https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")!
+        let url = URL(string: "https://api.themoviedb.org/3/movie/\(endpoint!)?api_key=\(apiKey)")! 
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
         let task: URLSessionDataTask = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
@@ -53,6 +53,8 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         task.resume()
     }
+    
+    
     func refreshControlAction(_ refreshControl: UIRefreshControl) {
         
         
@@ -123,15 +125,21 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         let cell = sender as! UITableViewCell
         let indexPath = tableView.indexPath(for: cell)
         let movie = movies?[(indexPath?.row)!]
         
-        let detailViewController = segue.destination as! DetailViewController
+        //add red color when click
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.red
+        cell.selectedBackgroundView = backgroundView
         
+        
+        let detailViewController = segue.destination as! DetailViewController
         detailViewController.movie = movie!
         
-        print("called")
+       
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
